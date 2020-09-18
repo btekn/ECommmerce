@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="ECommerce-1.0.0.0">
+        
+    <wb-module deploy-name="Vektorel_ETicaret-1.0.0.0">
+                
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
+                
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="ECommerce"/>
+                
         <property name="java-output-path" value="/ECommerce/build/classes"/>
+        <property name="context-root" value="Vektorel_ETicaret"/>
+            
     </wb-module>
+    
 </project-modules>

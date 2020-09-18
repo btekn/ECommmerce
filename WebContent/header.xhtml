@@ -131,7 +131,7 @@
                         <i class="ti-menu"></i>
                         <span>Kategoriler</span>
                         
-                            <ui:repeat var="ls" value="{indexBean.model.listKategori}">
+                            <ui:repeat var="ls" value="{headerBean.kategoriListesi}">
                             <li><a href="#">#{ls.ad}</a></li>
                             </ui:repeat>
                             
@@ -140,15 +140,11 @@
                 </div>
                 <nav class="nav-menu mobile-menu">
                     <ul>
-                        <li class="active"><a href="./index.html">Home</a></li>
-                        <li><a href="./shop.html">Shop</a></li>
-                        <li><a href="#">Collection</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Men's</a></li>
-                                <li><a href="#">Women's</a></li>
-                                <li><a href="#">Kid's</a></li>
-                            </ul>
-                        </li>
+                    <ui:repeat var="sl" value="#{headerBean.sayfaListesi}">
+                    	<li class="active"><a href="#{sl.url}">#{sl.ad}</a></li> 
+                    </ui:repeat>
+                        
+                        
                         <li><a href="./blog.html">Blog</a></li>
                         <li><a href="./contact.html">Contact</a></li>
                         <li><a href="#">Pages</a>
