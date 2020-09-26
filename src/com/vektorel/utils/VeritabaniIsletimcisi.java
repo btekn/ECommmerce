@@ -40,7 +40,7 @@ public class VeritabaniIsletimcisi<T> implements IGENERICCRUD<T>{
                 session.close();
             }           
         } catch (HibernateException ex) {
-           // HataBildirimleri.CloseConnectionErrorMessage(ex.toString());
+            //HataBildirimleri.CloseConnectionErrorMessage(ex.toString());
             return false;
         }
         return true;
@@ -69,7 +69,7 @@ public class VeritabaniIsletimcisi<T> implements IGENERICCRUD<T>{
                 session.update(t);
                 Kapat();
             } catch (Exception ex) {
-              //  HataBildirimleri.UpdateErrorMessage(ex.toString());
+                ///HataBildirimleri.UpdateErrorMessage(ex.toString());
                 return false;
             }            
             return true;
@@ -93,7 +93,7 @@ public class VeritabaniIsletimcisi<T> implements IGENERICCRUD<T>{
                     session.delete(o);
                 Kapat();                
             } catch (HibernateException ex) {
-               // HataBildirimleri.UpdateErrorMessage(ex.toString());
+                //HataBildirimleri.UpdateErrorMessage(ex.toString());
                 return false;
             }            
             return true;
@@ -101,7 +101,42 @@ public class VeritabaniIsletimcisi<T> implements IGENERICCRUD<T>{
         else        
             return false;
     }
+    
+    public T GetbyId(long id, T t){
+        if(Ac()){
+            try {
+                criteria = session.createCriteria(t.getClass());
+                criteria.add(Restrictions.eq("id", id));
+                t = (T) criteria.list().get(0);
+                Kapat();
+                return t;
+            } catch (Exception e) {
+            	System.out.println("HATA...: "+ e.toString());
+                Kapat();
+                return null;
+                        
+            }
+        }
+        return null;
+    }
 
+    public T GetbyId(int id, T t){
+        if(Ac()){
+            try {
+                criteria = session.createCriteria(t.getClass());
+                criteria.add(Restrictions.eq("id", id));
+                t = (T) criteria.list().get(0);
+                Kapat();
+                return t;
+            } catch (Exception e) {
+            	System.out.println("HATA...: "+ e.toString());
+                Kapat();
+                return null;
+                        
+            }
+        }
+        return null;
+    }
     @Override
     public List<T> MyList(T t) {            
            if(Ac()){
@@ -113,7 +148,7 @@ public class VeritabaniIsletimcisi<T> implements IGENERICCRUD<T>{
                 Kapat();              
                 
             } catch (HibernateException ex) {
-              //  HataBildirimleri.UpdateErrorMessage(ex.toString());                
+               // HataBildirimleri.UpdateErrorMessage(ex.toString());                
             }            
             return mylist;
         }
@@ -138,13 +173,16 @@ public class VeritabaniIsletimcisi<T> implements IGENERICCRUD<T>{
                 // Amaç: bir entity içinde (id, ad, soyad,telefon,tckimlik)
                 // gibi alanlar var.
                 // tblmusteri -> id=null, ad=Ali, soyad=eray,tckimlik=null
-                for (int i = 0; i < myParams.length; i++) {
+                for (int i = 1; i < myParams.length; i++) {
                     myParams[i].setAccessible(true);
-                    if(myParams[i]!=null){
+                    if(myParams[i].get(t)!=null){
                          criteria.add(
+                                Restrictions.or(
                                 Restrictions
                                    .like(myParams[i].getName()
-                                                    , myParams[i]));
+                                                    , "%"+myParams[i].get(t)+"%")
+                                )
+                         );
                     }
                 }
                 mylist = criteria.list();

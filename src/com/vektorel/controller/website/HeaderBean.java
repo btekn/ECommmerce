@@ -9,7 +9,7 @@ import com.vektorel.dao.website.PagesDao;
 import com.vektorel.model.tblkategori;
 import com.vektorel.model.tblpages;
 
-@ManagedBean(name="headerBean" )
+@ManagedBean(name = "headerBean")
 public class HeaderBean {
 	
 	private List<tblkategori> kategoriListesi;
@@ -29,11 +29,12 @@ public class HeaderBean {
 		this.kategoriListesi = kategoriListesi;
 	}
 	public List<tblpages> getSayfaListesi() {
-		return dbPages.MyList(new tblpages());
+		return  dbPages.MyList(new tblpages());
 	}
 	public void setSayfaListesi(List<tblpages> sayfaListesi) {
 		this.sayfaListesi = sayfaListesi;
 	}
+	
 	
 
 }

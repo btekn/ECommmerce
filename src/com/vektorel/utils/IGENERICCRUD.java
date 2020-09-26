@@ -11,4 +11,3 @@ public interface IGENERICCRUD<T> {
     public T Search(String ColumName, Object FindKey, T t);
     
 }
-
